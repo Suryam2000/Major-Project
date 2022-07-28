@@ -2,9 +2,24 @@ const User = require('../models/user');
 const { use } = require('../routes');
 
 module.exports.user_profile = function(req, res){
-    return res.render('user_profile',{
-        title: "User | Profile"
-    });
+
+    if(req.cookies.user_id){
+        User.findById(req.cookies.user_id, function(err, user){
+
+            if(user){
+                return res.render('user_profile',{
+                    title: "User | Profile",
+                    user: user
+                });
+            }
+
+            console.log('No such user found');
+            return res.redirect('/users/sign-in');
+        });
+    }else{
+        console.log('Session timed out!!');
+        return res.redirect('/users/sign-in');
+    }
 };
 
 module.exports.signIn = function(req, res){
