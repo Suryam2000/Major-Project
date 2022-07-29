@@ -7,12 +7,22 @@ module.exports.user_profile = function(req, res){
 };
 
 module.exports.signIn = function(req, res){
+
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
+
     return res.render('user_signin', {
         title: "User | SignIn"
     });
 };
 
 module.exports.signUp = function(req, res){
+
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
+    
     return res.render('user_signup', {
         title: "User | SignUp"
     });
