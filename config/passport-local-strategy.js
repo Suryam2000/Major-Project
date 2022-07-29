@@ -2,6 +2,8 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user');
 
+//Finding which user has signed in
+
 passport.use(new LocalStrategy({
         usernameField: 'email'
     },
@@ -21,3 +23,26 @@ passport.use(new LocalStrategy({
         });
     }
 ));
+
+//serializing user to decide which key to be used in cookies
+
+passport.serializeUser(function(user, done){
+    done(null, user.id);
+});
+
+//deserialize the key in cookie
+
+passport.deserializeUser(function(id, done){
+    User.findById(id, function(err, user){
+        if(err){
+            console.log('Error in finding the user!!');
+            done(err);
+        }
+
+        done(null, user);
+    });
+});
+
+//exporting
+
+module.exports = passport;
