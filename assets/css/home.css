@@ -1,0 +1,13 @@
+#home-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; }
+  #home-body div {
+    text-align: center; }
+    #home-body div h1 {
+      font-size: 100px;
+      margin: 0px; }
+    #home-body div h5 {
+      font-size: 25px;
+      margin: 0px; }
