@@ -22,7 +22,7 @@ module.exports.signUp = function(req, res){
     if(req.isAuthenticated()){
         return res.redirect('/users/profile');
     }
-    
+
     return res.render('user_signup', {
         title: "User | SignUp"
     });
@@ -52,5 +52,14 @@ module.exports.create = function(req, res){
 };
 
 module.exports.createSession = function(req, res){
+    return res.redirect('/');
+};
+
+module.exports.destroySession = function(req, res){
+    req.logout(function(err){
+        if(err){ 
+            return console.log(err); 
+        }
+    });
     return res.redirect('/');
 };
