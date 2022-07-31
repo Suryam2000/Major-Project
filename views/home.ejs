@@ -2,8 +2,18 @@
 <link rel="stylesheet" href="/css/user_signin.css">
 
 <% if (locals.user){ %>
-    
+
+    <section>
+        <h2>Posts</h2>
+
+        <form action="" id="new-post-form" method="post">
+            <textarea name="content" cols="30" rows="3" placeholder="Type Here...."></textarea>
+            <input type="submit" value="Post">
+        </form>
+    </section>
+
 <% }else{ %>
+
     <div id="home-body">
         <div>
             <h1>Social</h1>
@@ -30,6 +40,7 @@
             </div>
         </div>
     </div>
+
 <% } %>
 
 <script src="/js/home.js"></script>

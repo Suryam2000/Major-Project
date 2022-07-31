@@ -3,9 +3,6 @@ header {
   justify-content: space-between;
   background-color: #006aac;
   color: white;
-  position: fixed;
-  top: 0;
-  width: 100vw;
   padding: 10px 0px;
   height: 4vh; }
   header div {
