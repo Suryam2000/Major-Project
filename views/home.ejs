@@ -6,10 +6,25 @@
     <section>
         <h2>Posts</h2>
 
-        <form action="" id="new-post-form" method="post">
+        <form action="/posts/create" id="new-post-form" method="post">
             <textarea name="content" cols="30" rows="3" placeholder="Type Here...."></textarea>
             <input type="submit" value="Post">
         </form>
+    </section>
+
+    <section>
+        <h3>All Posts:</h3>
+
+        <ul>
+            <% for(i of posts){ %>
+                <p>
+                    <li><%= i.content %></li>
+                    <small>
+                        <%= i.user.name %>
+                    </small>
+                </p>
+            <% } %>
+        </ul>
     </section>
 
 <% }else{ %>
