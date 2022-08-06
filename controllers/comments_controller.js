@@ -19,3 +19,17 @@ module.exports.create = function(req, res){
         }
     });
 };
+
+module.exports.destroy = function(req, res){
+    Comment.findById(req.params.id, function(err, comment){
+        if(err){console.log(err); return;}
+
+        if(comment.user == req.user.id){
+            comment.remove();
+
+            return res.redirect('back');
+        }else{
+            return res.redirect('back');
+        }
+    });
+};
