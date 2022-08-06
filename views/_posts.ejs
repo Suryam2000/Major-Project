@@ -22,23 +22,9 @@
         <div class="post-comments-list">
             <ul id="post-comments-<%=i._id%>">
                 <% for(comment of i.comment){%>
-                    <li>
-                        <p>
-                            <%= comment.content %>
-                            <br>
-                            <small>
-                                <%= comment.user.name %>
-                            </small>
-                            <small>
-                                <% if( locals.user && locals.user.id == comment.user.id ){ %>
-                                    <a href="/comments/destroy/<%= comment.id %>/<%= i.user._id %>">Delete</a>
-                                <% } %>
-                                <% if( locals.user && locals.user.id == i.user.id && locals.user.id != comment.user.id ){ %>
-                                    <a href="/comments/destroy/<%= comment.id %>/<%= i.user._id %>">Delete</a>
-                                <% } %>
-                            </small>
-                        </p>
-                    </li>
+
+                    <%- include('_comments') -%>
+                    
                 <%} %>
             </ul>
         </div>
