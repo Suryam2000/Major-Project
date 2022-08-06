@@ -24,10 +24,10 @@ module.exports.destroy = function(req, res){
     Comment.findById(req.params.id, function(err, comment){
         if(err){console.log(err); return;}
 
-        if(comment.user == req.user.id){
+        if((comment.user == req.user.id) || (req.params.pid == req.user.id) ){
             comment.remove();
 
-            let postId= comment.post;
+            let postId = comment.post;
 
             Post.findByIdAndUpdate(postId, {$pull: {comment: req.params.id}}, function(err, post){
                 return res.redirect('back');
