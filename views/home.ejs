@@ -3,38 +3,44 @@
 
 <% if (locals.user){ %>
 
-    <section>
-        <h2>Posts</h2>
-
-        <form action="/posts/create" id="new-post-form" method="post">
-            <textarea name="content" cols="30" rows="3" placeholder="Type Here...." required></textarea>
-            <input type="submit" value="Post">
-        </form>
-    </section>
-
-    <section>
-        <h3>All Posts:</h3>
-
-        <ul>
-            <% for(i of posts){ %>
-                
-                <%- include('_posts') -%>
-
-            <% } %>
-        </ul>
-    </section>
-
-    <section>
+    <div class="section-box">
+        <div id="sec-box-1">
+            <section>
+                <h2>Posts</h2>
         
-        <h4>All Users</h4>
-
-        <% for(u of all_users){ %>
-            <p>
-                <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
-            </p>
-        <% } %>
-
-    </section>
+                <form action="/posts/create" id="new-post-form" method="post">
+                    <textarea name="content" cols="30" rows="3" placeholder="Type Here...." required></textarea>
+                    <input type="submit" value="Post">
+                </form>
+            </section>
+        
+            <section>
+                <h3>All Posts:</h3>
+        
+                <ul>
+                    <% for(i of posts){ %>
+                        
+                        <%- include('_posts') -%>
+        
+                    <% } %>
+                </ul>
+            </section>
+        </div>
+    
+        <div id="sec-box-2">
+            <section>
+            
+                <h4>All Users</h4>
+        
+                <% for(u of all_users){ %>
+                    <p>
+                        <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
+                    </p>
+                <% } %>
+        
+            </section>
+        </div>
+    </div>
 
 <% }else{ %>
 

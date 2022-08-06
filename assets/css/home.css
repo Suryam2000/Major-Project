@@ -1,3 +1,19 @@
+.section-box {
+  display: flex; }
+  .section-box #sec-box-1 {
+    display: flex;
+    flex-direction: column;
+    width: 85vw;
+    justify-content: space-around;
+    align-items: center;
+    border: 2px solid grey; }
+  .section-box #sec-box-2 {
+    display: flex;
+    width: 15vw;
+    justify-content: space-around;
+    align-items: flex-start;
+    border: 2px solid grey; }
+
 #home-body {
   display: flex;
   justify-content: space-evenly;
@@ -9,7 +25,3 @@
   #home-body div h5 {
     font-size: 1.5rem;
     margin: 0px; }
-
-/*section{
-    
-}*/
