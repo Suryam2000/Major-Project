@@ -13,6 +13,7 @@ router.post('/createSession', passport.authenticate(
     'local',
     {failureRedirect: '/users/sign-in'}
 ), usersController.createSession);
+router.post('/update/:id', usersController.update);
 
 router.get('/sign-out', usersController.destroySession);
 
