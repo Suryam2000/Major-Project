@@ -7,7 +7,7 @@
         <div id="sec-box-1">
             <section>
                 <h2>Posts</h2>
-        
+
                 <form action="/posts/create" id="new-post-form" method="post">
                     <textarea name="content" cols="30" rows="3" placeholder="Type Here...." required></textarea>
                     <input type="submit" value="Post">
@@ -46,6 +46,18 @@
 
     <%- include('_guesthome')-%>
 
-<% } %>
+    <script>
+        window.onload = function() {
+            if(!window.location.hash) {
+                window.location = window.location + '#';
+                window.location.reload();
+            }
 
-<script src="/js/home.js"></script>
+            var url = new URLSearchParams(window.location.search);
+            url.set("m","#");
+            history.replaceState(null,null,"?"+url.toString());
+        }
+    </script>
+
+
+<% } %>

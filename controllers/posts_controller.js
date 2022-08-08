@@ -7,6 +7,8 @@ module.exports.createPost = async function(req, res){
             content: req.body.content,
             user: req.user._id
         }); 
+
+        req.flash('success', 'Posted Successfully');
     
         return res.redirect('back');
     } catch (error) {

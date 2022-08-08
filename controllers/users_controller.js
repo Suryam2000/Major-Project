@@ -29,7 +29,8 @@ module.exports.update = function(req, res){
 module.exports.signIn = function(req, res){
 
     if(req.isAuthenticated()){
-        return res.redirect('/users/profile');
+        req.flash('warning', 'Session ongoing!');
+        return res.redirect('/');
     }
 
     return res.render('user_signin', {
@@ -40,7 +41,8 @@ module.exports.signIn = function(req, res){
 module.exports.signUp = function(req, res){
 
     if(req.isAuthenticated()){
-        return res.redirect('/users/profile');
+        req.flash('warning', 'Session ongoing!');
+        return res.redirect('/');
     }
 
     return res.render('user_signup', {
@@ -72,6 +74,8 @@ module.exports.create = function(req, res){
 };
 
 module.exports.createSession = function(req, res){
+    req.flash('success', 'Logged in Successfully');
+
     return res.redirect('/');
 };
 
@@ -81,5 +85,7 @@ module.exports.destroySession = function(req, res){
             return console.log(err); 
         }
     });
-    return res.redirect('/');
+    
+    return res.redirect('/?m=' + "session out");
+
 };

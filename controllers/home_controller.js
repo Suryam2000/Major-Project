@@ -3,6 +3,11 @@ const User = require('../models/user');
 
 module.exports.home = async function(req, res){
     try {
+
+        if(req.query.m == "session out"){
+            req.flash('success', 'Logged out Successfully!');
+        }
+
         let posts = await Post.find({})
         .populate('user')
         .populate({
