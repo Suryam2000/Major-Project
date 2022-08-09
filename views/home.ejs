@@ -17,13 +17,15 @@
             <section>
                 <h3>All Posts:</h3>
         
-                <ul>
-                    <% for(i of posts){ %>
-                        
-                        <%- include('_posts') -%>
-        
-                    <% } %>
-                </ul>
+                <div id="posts-list-container">
+                    <ul>
+                        <% for(i of posts){ %>
+                            
+                            <%- include('_posts') -%>
+            
+                        <% } %>
+                    </ul>
+                </div>
             </section>
         </div>
     
@@ -61,3 +63,5 @@
 
 
 <% } %>
+
+<script src="/js/home_posts.js"></script>
