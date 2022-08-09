@@ -1,4 +1,4 @@
-<li>
+<li id="comment-<%= comment._id %>">
     <p>
         <%= comment.content %>
         <br>
@@ -7,10 +7,10 @@
         </small>
         <small>
             <% if( locals.user && locals.user.id == comment.user.id ){ %>
-                <a href="/comments/destroy/<%= comment.id %>/<%= i.user._id %>">Delete</a>
+                <a class="delete-comment-button" href="/comments/destroy/<%= comment.id %>/<%= i.user._id %>">Delete</a>
             <% } %>
             <% if( locals.user && locals.user.id == i.user.id && locals.user.id != comment.user.id ){ %>
-                <a href="/comments/destroy/<%= comment.id %>/<%= i.user._id %>">Delete</a>
+                <a class="delete-comment-button" href="/comments/destroy/<%= comment.id %>/<%= i.user._id %>">Delete</a>
             <% } %>
         </small>
     </p>
