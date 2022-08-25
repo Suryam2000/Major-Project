@@ -4,3 +4,8 @@
   align-items: center; }
   #profile-box h1 {
     font-size: 3rem; }
+  #profile-box img {
+    border-radius: 50%;
+    border: 2px solid black;
+    width: 200px;
+    height: 200px; }
