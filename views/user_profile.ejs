@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="/css/user_profile.css">
 
+
 <div id="profile-box">
     <h1>Profile</h1>
 
@@ -11,9 +12,11 @@
         <button>Edit Profile</button></a>    
 
         <div>
-            <form action="/users/update/<%= user_profile.id %>" method="post">
+            <form action="/users/update/<%= user_profile.id %>" enctype="multipart/form-data" method="post">
                 <input type="text" name="name" placeholder="Your Name" value="<%= user_profile.name %>" required>
                 <input type="email" name="email" placeholder="Your Email" value="<%= user_profile.email %>" required>
+
+                <input type="file" name="avatar" placeholder="Profile Picture">
                 <input type="submit" value="Update">
             </form>
         </div>

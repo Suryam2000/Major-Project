@@ -14,14 +14,35 @@ module.exports.user_profile = function(req, res){
 
 };
 
-module.exports.update = function(req, res){
+module.exports.update = async function(req, res){
     if(req.user.id == req.params.id){
-        User.findByIdAndUpdate(req.params.id, {name: req.body.name, email: req.body.email}, function(err, user){
-            if(err){console.log(err); return;}
-    
+
+        try {
+            
+            let user = await User.findById(req.params.id);
+            User.uploadedAvatar(req, res, function(err){
+                if(err){
+                    console.log(err);
+                }
+
+                user.name = req.body.name;
+                user.email = req.body.email;
+
+                if(req.file){
+                    //saving the path of uploaded file into avatar field in user schema
+                    user.avatar = User.avatarPath + '/' + req.file.filename;
+                }
+
+                user.save();
+                return res.redirect('back');
+            });
+
+        } catch (error) {
+            req.flash('error', error);
             return res.redirect('back');
-        });
+        }
     }else{
+        req.flash('error', 'Unauthorized!');
         return res.status(401).send('Unauthorized');
     }
 };
