@@ -1,6 +1,8 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
 const commentsMailer = require('../mailers/comments_mailer');
+const queue = require('../config/kue');
+const commentEmailWorker = require('../workers/comment_email_worker');
 
 module.exports.create = async function(req, res){
     try {
@@ -21,7 +23,10 @@ module.exports.create = async function(req, res){
             comment = await comment.populate('post', 'user');
             let post2 = await post.populate('user', 'name email');
 
-            commentsMailer.newComment(comment,post2);
+            //creating job for queue for sending emails using parallel jobs feature
+            let job = queue.create('emails', {comment: comment, post2: post2}).save(function(err){
+                if(err){ console.log(err); return; }
+            });
 
             if (req.xhr){
 
