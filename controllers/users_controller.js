@@ -1,6 +1,10 @@
 const User = require('../models/user'); 
+const resetToken = require('../models/resetpasstokens');
 const fs = require('fs');
 const path = require('path');
+const jwt = require('jsonwebtoken');
+
+const resetpassMailer = require('../mailers/resetpass_mailer');
 
 module.exports.user_profile = function(req, res){
 
@@ -78,6 +82,84 @@ module.exports.signUp = function(req, res){
     return res.render('user_signup', {
         title: "Social | SignUp"
     });
+};
+
+module.exports.forgotPass = function(req, res){
+
+    if(req.isAuthenticated()){
+        req.flash('warning', 'Session ongoing!');
+        return res.redirect('/');
+    }
+
+    return res.render('user_forgotpass', {
+        title: "Social | SignIn"
+    });
+
+};
+
+module.exports.identityStatus = function(req, res){
+
+    User.findOne({email: req.body.email}, function(err, user){
+        if(err){ console.log(err); return; }
+
+        if(user){
+            let accesstoken = jwt.sign(user.toJSON(), 'Suryam', {expiresIn: '1h'});
+
+            resetToken.create({
+                user: user._id,
+                accesstoken: accesstoken,
+                isValid: true
+            });
+
+            resetpassMailer.newPass(user, accesstoken);
+
+            return res.render('user_identity', {
+                title: "Social | SignIn"
+            });
+        }
+
+        req.flash('error', 'No such email exists'); 
+        return res.redirect('back');
+        
+    });
+
+};
+
+module.exports.resetPass = function(req, res){
+    resetToken.findOne({accesstoken: req.params.id}, function(err, token){
+        if(err){ console.log(err); return; }
+
+        if(token){
+            if(token.isValid == "true"){
+                return res.render('user_resetpass', {
+                    title: "Social | Reset Password",
+                    token: req.params.id
+                });
+            }else{
+                console.log("Link Expired");
+            }
+        }
+    });
+};
+
+module.exports.resetfinalpass = async function(req, res){
+    let token = await resetToken.findOne({accesstoken: req.params.id});
+
+    if(token){
+        if(req.body.password != req.body.cnfpassword){
+            req.flash('error', 'Passwords do not match!');
+            return res.redirect('back');
+        }
+
+        token.isValid = "false";
+
+        token = await token.populate('user', 'password');
+        token.user.password = req.body.password;
+
+        token.save();
+        token.user.save();
+        return res.redirect('/');
+    }
 };
 
 module.exports.create = function(req, res){

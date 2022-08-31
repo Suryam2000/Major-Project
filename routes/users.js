@@ -8,6 +8,12 @@ router.get('/profile/:uid', passport.checkAuthentication, usersController.user_p
 router.get('/sign-up', usersController.signUp);
 router.get('/sign-in', usersController.signIn);
 
+router.use('/forgot-pass', require('./forgotpass'));
+
+router.post('/reset_password/:id', usersController.resetfinalpass);
+
+router.post('/identity_status', usersController.identityStatus);
+
 router.post('/create', usersController.create);
 router.post('/createSession', passport.authenticate(
     'local',
