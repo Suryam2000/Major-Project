@@ -37,6 +37,8 @@
                         pSelf.deleteComment($(' .delete-comment-button', newComment));
                         $(`#post-${postId}-comments-input-data`)[0].value = "";
 
+                        new ToggleLike($('.toggle-like-btn', newComment));
+
                     }, error: function(error){
                         console.log(error.responseText);
                     }
@@ -57,6 +59,12 @@
                             </small>
                             <small>
                                 <a class="delete-comment-button" href="/comments/destroy/${ comment._id }/${ comment.post }">Delete</a>
+                            </small>
+                            <br>
+                            <small>
+                                <a class="toggle-like-btn" data-likes="0" href="/likes/toggle/?id=${comment._id}&type=Comment">
+                                    0 Likes
+                                </a>
                             </small>
                         </p>
                     </li>`);

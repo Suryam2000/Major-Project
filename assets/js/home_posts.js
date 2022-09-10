@@ -19,6 +19,8 @@
                     //call class created in home_post_comments.js
                     new PostComments(data.data.post._id);
 
+                    new ToggleLike($('.toggle-like-btn', newPost));
+
                     new Noty({
                         theme: 'relax',
                         text: "Post Created!",
@@ -46,6 +48,12 @@
             </small>
             <small>
                 <a class="delete-post-button" href="/posts/destroy/${post._id}">Delete</a>
+            </small>
+            <br>
+            <small>
+                <a class="toggle-like-btn" data-likes="0" href="/likes/toggle/?id=${post._id}&type=Post">
+                    0 Likes
+                </a>
             </small>
         </p>
         <div class="post-comments">
