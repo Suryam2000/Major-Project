@@ -1,0 +1,16 @@
+<% if(locals.user){ %>
+    <div id="user-chat-box">
+        <ul id="chat-msg-list">
+            <li class="other-msg">
+                <span>Other Message</span>
+            </li>
+            <li class="self-msg">
+                <span>Self Message</span>
+            </li>
+        </ul>
+        <div>
+            <input id="chat-msg-input" type="text" placeholder="Type message here">
+            <button id="send-msg">Send</button>
+        </div>
+    </div>
+<% } %>
