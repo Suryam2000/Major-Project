@@ -9,3 +9,12 @@
     border: 2px solid black;
     width: 200px;
     height: 200px; }
+  #profile-box .toggle-friend-btn a button {
+    border: none;
+    padding: 5px; }
+  #profile-box .toggle-friend-btn a .add {
+    background-color: #005eff;
+    color: white; }
+  #profile-box .toggle-friend-btn a .remove {
+    background-color: #e33b3b;
+    color: white; }
