@@ -9,10 +9,16 @@ const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const passportJWT = require('./config/passport-jwt-startegy');
 const passportGoogle = require('./config/passport-google-oauth2-strategy');
+
 const mongoStore = require('connect-mongo');
 const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
 const customMware = require('./config/middleware');
+
+const chatServer = require('http').Server(app);
+const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
+chatServer.listen(5000);
+console.log('ChatServer is running on 5000 port');
 
 app.use(sassMiddleware({
     src: './assets/scss',
