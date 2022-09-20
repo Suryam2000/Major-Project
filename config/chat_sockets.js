@@ -1,11 +1,26 @@
 module.exports.chatSockets = function(socketServer){
-    let io = require('socket.io')(socketServer);
+
+    //added this cors to use web application on one port and socket server from another
+    let io = require('socket.io')(socketServer, {
+        cors: {
+            origin: "http://localhost:8000",
+            methods: ["GET","POST"]
+        }
+    });
 
     io.sockets.on('connection', function(socket){
         console.log('New connection recieved', socket.id);
 
         socket.on('disconnect', function(){
-            console.log('scoket disconnected');
+            console.log('socket disconnected');
+        });
+
+        socket.on('join_room', function(data){
+            console.log('Joining request recieved', data);
+
+            socket.join(data.chatroom);
+
+            io.in(data.chatroom).emit('user_joined', data);
         });
     });
 

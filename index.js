@@ -18,7 +18,7 @@ const customMware = require('./config/middleware');
 const chatServer = require('http').Server(app);
 const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
 chatServer.listen(5000);
-console.log('ChatServer is running on 5000 port');
+console.log('ChatServer is running on 5000 port');  
 
 app.use(sassMiddleware({
     src: './assets/scss',
