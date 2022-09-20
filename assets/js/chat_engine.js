@@ -26,5 +26,19 @@ class ChatEngine{
                 console.log('User Joined', data);
             });
         });
+
+
+        $('#send-msg').click(function(){
+            let msg = $('#chat-msg-input').val();
+
+            if(msg != ''){
+                self.socket.emit('send_msg', {
+                    message: msg,
+                    user_email: self.userEmail,
+                    chatroom: 'Social'
+                });
+            }
+        });
+
     }
 }

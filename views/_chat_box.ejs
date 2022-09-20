@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/css/_chat_box.css">
+
 <% if(locals.user){ %>
     <div id="user-chat-box">
         <ul id="chat-msg-list">
@@ -8,7 +10,7 @@
                 <span>Self Message</span>
             </li>
         </ul>
-        <div>
+        <div id="msg-input">
             <input id="chat-msg-input" type="text" placeholder="Type message here">
             <button id="send-msg">Send</button>
         </div>
