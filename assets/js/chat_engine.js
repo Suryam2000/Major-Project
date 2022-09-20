@@ -31,6 +31,8 @@ class ChatEngine{
         $('#send-msg').click(function(){
             let msg = $('#chat-msg-input').val();
 
+            $('#chat-msg-input').val('');
+
             if(msg != ''){
                 self.socket.emit('send_msg', {
                     message: msg,
@@ -38,6 +40,26 @@ class ChatEngine{
                     chatroom: 'Social'
                 });
             }
+        });
+
+        self.socket.on('receive_msg', function(data){
+            console.log('Message Received', data.message);
+
+            let newMessage = $('<li>');
+
+            let messageType = 'other-msg';
+
+            if(data.user_email == self.userEmail){
+                messageType = 'self-msg';
+            } 
+
+            newMessage.append($('<span>', {
+                'html': data.message
+            }));
+
+            newMessage.addClass(messageType);
+
+            $('#chat-msg-list').append(newMessage);
         });
 
     }
