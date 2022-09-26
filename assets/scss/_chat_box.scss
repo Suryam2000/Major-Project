@@ -1,4 +1,4 @@
-#user-chat-box{ 
+#user-chat-box-1{ 
     position: fixed;
     bottom: 0%;
     right: 5%;
@@ -6,7 +6,7 @@
     z-index: 2;
     background-color: rgb(0, 0, 0);
     padding: 10px;
-    #chat-msg-list{
+    #chat-msg-list-1{
         padding-inline-start: 0;
         min-height: 150px;
         li{
@@ -18,7 +18,7 @@
                 width: 50%;
             }
         }
-        .other-msg{
+        .other-msg-1{
             display: flex;
             justify-content: left;
             text-align: left;
@@ -27,7 +27,7 @@
                 color: white;
             }
         }
-        .self-msg{
+        .self-msg-1{
             display: flex;
             justify-content: right;
             text-align: right;
@@ -38,7 +38,54 @@
         }
     }
 
-    #msg-input{
+    #msg-input-1{
+        input,button{
+            padding: 10px;
+        }
+    }
+}
+
+#user-chat-box-2{ 
+    position: fixed;
+    bottom: 0%;
+    right: 55%;
+    border: 2px solid black;
+    z-index: 2;
+    background-color: rgb(0, 0, 0);
+    padding: 10px;
+    #chat-msg-list-2{
+        padding-inline-start: 0;
+        min-height: 150px;
+        li{
+            list-style: none;
+            padding: 5px;
+            span{
+                border: 1px solid black;
+                padding: 5px;
+                width: 50%;
+            }
+        }
+        .other-msg-2{
+            display: flex;
+            justify-content: left;
+            text-align: left;
+            span{
+                background-color: lightseagreen;
+                color: white;
+            }
+        }
+        .self-msg-2{
+            display: flex;
+            justify-content: right;
+            text-align: right;
+            span{
+                background-color: rgba(245, 245, 245, 0.501);
+                color: white;
+            }
+        }
+    }
+
+    #msg-input-2{
         input,button{
             padding: 10px;
         }
