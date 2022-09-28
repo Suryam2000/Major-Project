@@ -1,0 +1,16 @@
+footer {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(103, 101, 101, 0.968);
+  color: white; }
+  footer div {
+    display: flex;
+    align-items: center; }
+    footer div ul li {
+      list-style: none;
+      margin-bottom: 10px; }
+      footer div ul li a {
+        text-decoration: none;
+        color: white; }
+        footer div ul li a:hover {
+          text-decoration: underline; }
